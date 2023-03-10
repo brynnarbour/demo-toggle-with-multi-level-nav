@@ -36,10 +36,12 @@ h1 a {
 
 h2 {
     font-size: 3.125rem;
+    margin-bottom: 1.5rem;
 }
 
 p {
     margin-bottom: 1.5rem;
+    max-width: 70ch;
 }
 
 /* ***************** header ****************** */
@@ -63,7 +65,19 @@ header {
 }
 
 header nav {
-    flex: 1 0 100%;
+    position: absolute;
+    left: 0;
+    top: 5.5rem;
+    width: 100vw;
+    padding: 0 1rem;
+    background-color: var(--navy);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+.show-nav {
+    max-height: 28.125rem;
 }
 
 ul.menu {
@@ -84,6 +98,10 @@ ul.menu li {
 
 a.first-link {
     font-size: 1.3rem;
+}
+
+.first-link svg {
+    display: none;
 }
 
 ul.submenu {
@@ -117,4 +135,93 @@ ul.utility-nav a {
 
 section {
     padding: 3.12rem 0;
+}
+
+.gallery-imgs img {
+    margin-bottom: 1.5rem
+}
+
+@media screen and (min-width: 850px) {
+    .toggle-btn {
+        display: none;
+    }
+
+    header nav {
+        max-height: 28rem;
+        position: static;
+        width: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        overflow: visible;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1.5rem;
+        border: none;
+        margin: 0;
+    }
+
+    ul.menu li {
+        position: relative;
+    }
+
+    .first-link svg {
+        display: inline-block;
+        width: 1.25rem;
+    }
+
+    ul.menu .first-link {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    ul.submenu {
+        text-align: right;
+        padding: 0 1rem;
+        position: absolute;
+        top: 2.1875rem;
+        left: 0;
+        background-color: var(--navy);
+        white-space: nowrap;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    ul.utility-nav {
+        margin: 0;
+    }
+
+    ul.menu li:hover > ul.submenu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul.focus {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width: 980px) {
+    .gallery-imgs {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .gallery-imgs img {
+        width: 50%;
+    }
+
+    .gallery-imgs img:last-of-type {
+        position: relative;
+        top: 100px;
+        right: 150px;
+    }
 }
